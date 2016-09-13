@@ -1,6 +1,6 @@
 const _ = require('../lib/functions');
 const mailgun = require('mailgun-js');
-const apiArgs = ['o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'o:require-tls', 'o:skip-verification', 'h:X-My-Header', 'v:my-var'];
+const apiArgs = ['html', 'o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'h:X-My-Header', 'v:my-var'];
 
 module.exports = (req, res) => {
 
@@ -18,15 +18,14 @@ module.exports = (req, res) => {
         bcc, 
         subject,
         text, 
-        html, 
         inline,
         to = "to",
-        'o:require-tls':       oRequireTls       = 'False',
-        'o:skip-verification': oSkipVerification = 'False', 
+        'o:require-tls': oRequireTls,
+        'o:skip-verification': oSkipVerification 
     } 
         = req.body.args;
 
-    if(!apiKey || !domain || !mFrom || !mTo) {
+    if(!apiKey || !mFrom || !mTo) {
         _.echoBadEnd(r, to, res);
         return;
     }
@@ -41,23 +40,33 @@ module.exports = (req, res) => {
     if(inline && _.checkUrl(inline)) inline = request(inline);
 
      /* MailGun SDK Initialization */
-    mailgun({apiKey: apiKey, domain: domain});
-
+    let mail = mailgun({apiKey: apiKey, domain: domain});
 
     let data = {
-        mFrom: from,
-        mTo: to,
+        from: mFrom,
+        to: mTo,
         subject: subject,
         text: text,
-        html: html,
-        'o:require-tls': oRequireTls,
-        'o:skip-verification': oSkipVerification
+        'o:require-tls': oRequireTls || "False",
+        'o:skip-verification': oSkipVerification || "False",
         //attachment: inline || new mailgun.Attachment({data: file, filename: filename})
     };
 
-
     Object.keys(req.body.args).forEach((key) => {
-        if( apiArgs.indexOf(req.body.args[key]) != -1 && req.body.args[key] ) 
-            data[key] = apiKey[key];
+        if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
+            data[key] = req.body.args[key];
+    });
+
+    mail.messages().send(data, (err, body) => {
+        if(err) {
+            r.contextWrites[to] = JSON.stringify(err);
+            r.callback = 'error';
+        }
+        else {
+            r.contextWrites[to] = JSON.stringify(body);
+            r.callback = 'success';
+        }
+
+        res.status(200).send(r);
     });
 };
