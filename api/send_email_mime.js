@@ -8,8 +8,7 @@ module.exports = (req, res) => {
 
     /* Get user parameters and prepare it */
 
-    let attachment,
-        dataToSend = {},
+    let dataToSend = {},
         r = { callback: "", contextWrites: {} };
 
     let { 
@@ -37,7 +36,7 @@ module.exports = (req, res) => {
         from: mFrom,
         to: mTo,
         subject: subject,
-        body: text,
+        text: text,
         html: html
     });
 
@@ -57,6 +56,9 @@ module.exports = (req, res) => {
 
         dataToSend.to = mTo;
         dataToSend.message = message.toString('utf-8');
+
+
+        console.log(message.toString('utf-8'));
         
         mail.messages().sendMime(dataToSend, (err, body) => {
             if(err) {
