@@ -14,17 +14,18 @@
   "author": "Dima Shirokov",
   "license": "ISC",
   "dependencies": {
-    "mailgun-js": "^0.7.12",
+    "async": "^2.0.1",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "request": "^2.72.0",
+    "mailcomposer": "*",
+    "mailgun-js": "^0.7.12",
     "multer": "^1.2",
-    "mailcomposer": "*"
+    "request": "^2.72.0"
   },
   "devDependencies": {
-     "chai": "^3.5.0",
-     "mocha": "^2.4.5",
-     "supertest": "^1.2.0",
-     "supertest-as-promised": "^3.1.0"
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0"
   }
 }

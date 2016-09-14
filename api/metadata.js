@@ -225,6 +225,21 @@ module.exports.do = function(req, res){
                     info: "v: prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See Attaching Data to Messages for more information."
                 }
             ]
+        },
+        {
+            "name":"getMessages",
+            "args":[
+                {
+                    name: "apiKey",
+                    type: "String",
+                    info: "The api key obtained from MailGun."
+                },
+                {
+                    name: "domain",
+                    type: "String",
+                    info: "Mailgun account contain email domain."
+                },
+            ]
         }]
     })
 };

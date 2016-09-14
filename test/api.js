@@ -43,3 +43,18 @@ describe('/sendEmailMIME function', () => {
         });
     });
 });
+
+describe('/getMessages function', function() {
+    this.timeout(5000);
+
+    it('should deadddd', () => {
+        return request(app)
+        .post('/api/'+ global.PACKAGE_NAME +'/getMessages')
+        .send({args: { apiKey, domain, to }})
+        .expect(200)
+        .then((data) => {
+            //console.log(JSON.stringify(data.body));
+            assert.equal(data.body.callback, 'success');
+        });
+    });
+});
