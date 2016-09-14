@@ -20,6 +20,8 @@ module.exports = (req, res) => {
         return;
     }
 
+    /*Get mailgun logs with stored filter*/
+
     request.get(`https://api.mailgun.net/v3/${domain}/events?event=stored`, (err, response, body) => {
         if(err || response.statusCode !== 200) {
             r.contextWrites[to] = (err) ? JSON.stringify(err) : '(' + response.statusCode + ') ' + body;
@@ -33,10 +35,15 @@ module.exports = (req, res) => {
             storedEvents = JSON.parse(body);
 
         for (let i = 0; i < storedEvents['items'].length; i++) {
+            
+            /* 
+            Create array of functions, wich returns http request -> callback response body 
+            {"Accept": "message/rfc2822"} header -> MIME raw    
+            */
+            
             messageUrls[messageUrls.length] = (callback) => {
 
                 request.get(
-
                     {
                         url:     storedEvents['items'][i]['storage']['url'],
                         headers: {"Accept": "message/rfc2822"}
@@ -45,7 +52,6 @@ module.exports = (req, res) => {
                     (err, response, body) => {
                         if(err || response.statusCode !== 200) callback(null, i);
                         callback(null, body);
-                        //console.log(body);
                     }
                 ).auth('api', apiKey);
             }
@@ -56,10 +62,11 @@ module.exports = (req, res) => {
             r.callback = 'success';
 
             for (let i = 0; i < results.length; i++) {
+
+                /* Bug in rpt there */
+                
                 r.contextWrites[to].push(JSON.parse(results[i]));
             }
-
-            console.log(r);
 
             res.status(200).send(r);
         });

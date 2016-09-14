@@ -47,7 +47,7 @@ describe('/sendEmailMIME function', () => {
 describe('/getMessages function', function() {
     this.timeout(5000);
 
-    it('should deadddd', () => {
+    it('should stored get emails', () => {
         return request(app)
         .post('/api/'+ global.PACKAGE_NAME +'/getMessages')
         .send({args: { apiKey, domain, to }})
