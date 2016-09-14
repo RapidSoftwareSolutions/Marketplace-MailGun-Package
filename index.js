@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended:true}));
 app.get(`/api/${PACKAGE_NAME}`, require('./api/metadata.js').do);
 
 app.post(`/api/${PACKAGE_NAME}/sendEmail`, require('./api/send_email.js'));
+app.post(`/api/${PACKAGE_NAME}/sendEmailMIME`, require('./api/send_email_mime.js'));
 
 /** START LISTENING **/
 app.listen(PORT);

@@ -1,5 +1,6 @@
 const _ = require('../lib/functions');
 const mailgun = require('mailgun-js');
+
 const apiArgs = ['html', 'o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'h:X-My-Header', 'v:my-var'];
 
 module.exports = (req, res) => {

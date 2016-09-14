@@ -31,3 +31,15 @@ describe('/sendEmail function', () => {
         });
     });
 });
+
+describe('/sendEmailMIME function', () => {
+    it('should send email (MIME)', () => {
+        return request(app)
+        .post('/api/'+ global.PACKAGE_NAME +'/sendEmailMIME')
+        .send({args: { apiKey, domain, mFrom, mTo, to, subject, text }})
+        .expect(200)
+        .then((data) => {
+            assert.equal(data.body.callback, 'success');
+        });
+    });
+});
