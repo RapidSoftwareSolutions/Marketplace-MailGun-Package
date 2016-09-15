@@ -11,7 +11,8 @@ module.exports = (req, res) => {
     let { 
         apiKey,
         domain,
-        to = "to"
+        to = "to",
+        rawMime = "False"
     } 
         = req.body.args;
 
@@ -46,7 +47,7 @@ module.exports = (req, res) => {
                 request.get(
                     {
                         url:     storedEvents['items'][i]['storage']['url'],
-                        headers: {"Accept": "message/rfc2822"}
+                        headers: {"Accept": (rawMime == 'True') ? "message/rfc2822" : "*"}
                     }, 
 
                     (err, response, body) => {

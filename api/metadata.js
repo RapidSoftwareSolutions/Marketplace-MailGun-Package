@@ -239,6 +239,11 @@ module.exports.do = function(req, res){
                     type: "String",
                     info: "Mailgun account contain email domain."
                 },
+                {
+                    name: "rawMime",
+                    type: "String",
+                    info: "is will help you to get the raw MIME True || False (def)."
+                },
             ]
         }]
     })
