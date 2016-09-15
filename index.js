@@ -7,9 +7,7 @@ const express       = require('express'),
     fs              = require('fs');
 
 /** SET UP **/
-//If ran in production - use enviroment PORT. In development, default to 8080
 const PORT = process.env.PORT || 8080;
-//The package name
 global.PACKAGE_NAME = "marketplace-mailgun-package";
 
 if (!fs.existsSync('/tmp/marketplace-mailgun-package')) {
