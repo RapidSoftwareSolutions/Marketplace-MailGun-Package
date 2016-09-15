@@ -1,5 +1,6 @@
-const _ = require('../lib/functions');
+const       _ = require('../lib/functions');
 const mailgun = require('mailgun-js');
+const fs      = require('fs');
 
 const apiArgs = ['html', 'o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'h:X-My-Header', 'v:my-var'];
 
@@ -7,9 +8,7 @@ module.exports = (req, res) => {
 
     /* Get user parameters and prepare it */
 
-    let attachment,
-        r = { callback: "", contextWrites: {} };
-
+    let r = { callback: "", contextWrites: {} };
     let { 
         apiKey,
         domain,
@@ -23,9 +22,8 @@ module.exports = (req, res) => {
         to = "to",
         'o:require-tls': oRequireTls,
         'o:skip-verification': oSkipVerification,
-
     } 
-        = req.body.args;
+        = req.body.args || req.body;
 
     if(!apiKey || !mFrom || !mTo) {
         _.echoBadEnd(r, to, res);
@@ -42,7 +40,7 @@ module.exports = (req, res) => {
     if(inline && _.checkUrl(inline)) inline = request(inline);
 
      /* MailGun SDK Initialization */
-    let mail = mailgun({apiKey: apiKey, domain: domain});
+    let mail = mailgun({ apiKey: apiKey, domain: domain });
 
     let data = {
         from: mFrom,
@@ -51,13 +49,23 @@ module.exports = (req, res) => {
         text: text,
         'o:require-tls': oRequireTls || "False",
         'o:skip-verification': oSkipVerification || "False",
-        //attachment: inline || new mailgun.Attachment({data: file, filename: filename})
     };
 
-    Object.keys(req.body.args).forEach((key) => {
+    if(req.file || inline) {
+        data.attachment = inline || new mail.Attachment({
+            data:        fs.createReadStream(req.file.path), 
+            filename:    req.file.originalname,
+            contentType: req.file.mimetype,
+            knownLength: req.file.size    
+        });
+
+        fs.unlink(req.file.path);
+    }
+
+    /*Object.keys(req.body).forEach((key) => {
         if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
             data[key] = req.body.args[key];
-    });
+    });*/
 
     mail.messages().send(data, (err, body) => {
         if(err) {
@@ -69,6 +77,6 @@ module.exports = (req, res) => {
             r.callback = 'success';
         }
 
-        res.status(200).send(r);
+        res.status(200).send(r);      
     });
 };
