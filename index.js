@@ -21,7 +21,7 @@ if (!fs.existsSync('/tmp/marketplace-mailgun-package')) {
 
 let storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-    	cb(null, '/tmp/marketplace-mailgun-package');
+    	cb(null, `/tmp/${PACKAGE_NAME}`);
   	},
 
   	filename: function (req, file, cb) {
