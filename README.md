@@ -1,10 +1,14 @@
+[info]:https://github.com/RapidSoftwareSolutions/Marketplace-MailGun-Package/blob/master/instructions/domaininfo.png?raw=true
+
 # MailGun Package
 This package allows you to sending E-Mails, get messages etc.
 
-
-Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.
-
-<!--Need to add explanation on how to get API key WITH SCREENSHOTS-->
+##Gow to get apiKey
+1. [SignUp](https://mailgun.com/signup) or [SignIn](https://mailgun.com/sessions/new) to your MailGun account.
+2. Go to ***Domains*** tab.
+3. Create or select domain.
+4. Copy domain name and apiKey:
+![Domain info][info]
 
 ## MailGun.sendEmail
 Sends an email.
