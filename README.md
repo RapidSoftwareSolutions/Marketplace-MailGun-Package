@@ -8,6 +8,7 @@ This package allows you to sending E-Mails, get messages etc.
 2. Go to ***Domains*** tab.
 3. Create or select domain.
 4. Copy domain name and apiKey:
+
 ![Domain info][info]
 
 ## MailGun.sendEmail
