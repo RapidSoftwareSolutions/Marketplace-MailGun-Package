@@ -62,10 +62,12 @@ module.exports = (req, res) => {
         fs.unlink(req.file.path);
     }
 
-    /*Object.keys(req.body).forEach((key) => {
+    // req.body.args = req.body.args || req.body
+    
+    Object.keys(req.body.args).forEach((key) => {
         if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
             data[key] = req.body.args[key];
-    });*/
+    });
 
     mail.messages().send(data, (err, body) => {
         if(err) {
