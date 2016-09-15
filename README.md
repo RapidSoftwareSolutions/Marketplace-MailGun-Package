@@ -80,7 +80,7 @@ Posts a message in MIME format.
 	"callback": "success",
 	"contextWrites": {
 		"#": {
-			"to": "{"id":"<181a41e3-cf73-b708-bdb1-e3d709d22e1f@example.com>","message":"Queued. Thank you."}"
+			"to": "{\"id\":\"<181a41e3-cf73-b708-bdb1-e3d709d22e1f@example.com>\",\"message\":\"Queued. Thank you.\"}"
 		}
 	}
 }
@@ -169,9 +169,9 @@ Returns stored messages.
 | `stripped-html`     |string  | HTML version of the message, without quoted parts. |
 | `attachments`       |string  | Contains a json list of metadata objects, one for each attachment, see below. |
 | `message-url`       |string  | A URL that you can use to get and/or delete the message. |
-| `content-id-map`    |string  | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding attachment-x parameter. This allows you to map posted attachments to tags like <img src='cid'> in the message body. |
+| `content-id-map`    |string  | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding attachment-x parameter. This allows you to map posted attachments to tags like &lt;img src='cid'&gt; in the message body. |
 | `message-headers`   |string  | List of all MIME headers dumped to a json string (order of headers preserved). |
-| `content-id-map`    |string  | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding `attachment-x` parameter. This allows you to map posted attachments to tags like <img src='cid'> in the message body. |
+| `content-id-map`    |string  | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding `attachment-x` parameter. This allows you to map posted attachments to tags like &lt;img src='cid'&gt; in the message body. |
 
 The attachments JSON contains the following items.
 
