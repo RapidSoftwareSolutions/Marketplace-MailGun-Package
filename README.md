@@ -3,7 +3,7 @@
 # MailGun Package
 This package allows you to sending E-Mails, get messages etc.
 
-##Gow to get apiKey
+##How to get apiKey
 1. [SignUp](https://mailgun.com/signup) or [SignIn](https://mailgun.com/sessions/new) to your MailGun account.
 2. Go to ***Domains*** tab.
 3. Create or select domain.
@@ -15,8 +15,8 @@ This package allows you to sending E-Mails, get messages etc.
 Sends an email.
 
 
-| Field                 | Type     | Description  |
-| ----------------------| ---------| -------------|
+| Field                 | Type   | Description  |
+| ----------------------| -------| -------------|
 | `apiKey`*             |string  | The api key obtained from MailGun. |
 | `domain`*             |string  | The domain obtained from MailGun. |
 | `from`*               |string  | Email address. |
@@ -178,6 +178,7 @@ Returns stored messages.
 | `message-headers`   |string  | List of all MIME headers dumped to a json string (order of headers preserved). |
 | `content-id-map`    |string  | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding `attachment-x` parameter. This allows you to map posted attachments to tags like &lt;img src='cid'&gt; in the message body. |
 
+
 The attachments JSON contains the following items.
 
 | Field            | Type   | Description  |
@@ -187,7 +188,8 @@ The attachments JSON contains the following items.
 | `name`           |string  |The name of the attachment |
 | `content-type`   |string  |The content type of the attachment |
 
-(*) These are the parameters when the mimeRaw id `True`
+
+(*) These are the parameters when the mimeRaw is `True`
 
 | Field          | Type   | Description  |
 | -------------  |--------| -------------|
