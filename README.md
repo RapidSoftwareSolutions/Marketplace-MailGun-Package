@@ -38,11 +38,11 @@ Sends an email.
 ```json
 {
 	"apiKey": "YOUR_API_KEY",
-	"domain": "YOUR_DOMAIN_NAME,
+	"domain": "YOUR_DOMAIN_NAME",
 	"from": "FOO@YOUR_DOMAIN_NAME",
 	"to": "bar@example.com",
 	"subject": "Hello",
-	"text": "From RapidAPI with &#10084;"
+	"text": "From with &#10084;"
 }
 ```
 #### Response example
@@ -51,7 +51,7 @@ Sends an email.
 	"callback": "success",
 	"contextWrites": {
 		"#": {
-			"to" : "{"id":"<YOU@FOO@YOUR_DOMAIN_NAME>","message":"Queued. Thank you."}"
+			"to" : "{\"id\":\"<YOU@FOO@YOUR_DOMAIN_NAME>\",\"message\":\"Queued. Thank you.\"}"
 		}
 	}
 }
@@ -66,7 +66,7 @@ Posts a message in MIME format.
 ```json
 {
 	"apiKey": "YOUR_API_KEY",
-	"domain": "YOUR_DOMAIN_NAME,
+	"domain": "YOUR_DOMAIN_NAME",
 	"from": "FOO@YOUR_DOMAIN_NAME",
 	"to": "bar@example.com",
 	"subject": "Hello",
@@ -99,7 +99,7 @@ Returns stored messages.
 ```json
 {
 	"apiKey": "YOUR_API_KEY",
-	"domain": "YOUR_DOMAIN_NAME,
+	"domain": "YOUR_DOMAIN_NAME",
 }
 ```
 #### Response example
