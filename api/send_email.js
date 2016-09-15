@@ -22,7 +22,8 @@ module.exports = (req, res) => {
         inline,
         to = "to",
         'o:require-tls': oRequireTls,
-        'o:skip-verification': oSkipVerification 
+        'o:skip-verification': oSkipVerification,
+
     } 
         = req.body.args;
 
