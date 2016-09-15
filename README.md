@@ -3,7 +3,7 @@
 # MailGun Package
 This package allows you to sending E-Mails, get messages etc.
 
-##Gow to get apiKey
+##How to get apiKey
 1. [SignUp](https://mailgun.com/signup) or [SignIn](https://mailgun.com/sessions/new) to your MailGun account.
 2. Go to ***Domains*** tab.
 3. Create or select domain.
