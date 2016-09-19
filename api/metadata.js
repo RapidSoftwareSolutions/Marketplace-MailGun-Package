@@ -6,6 +6,12 @@ module.exports.do = function(req, res){
         "description": "Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.",
         'image': 'https://avatars2.githubusercontent.com/u/447686?v=3&s=200',
         'repo': 'https://github.com/RapidSoftwareSolutions/marketplace-mailgun-package',
+         'accounts': {
+            'domain': 'mailgun.com',
+            'credentials': [
+                'apiKey',
+            ]
+        },
         'blocks': [{
             "name":"sendEmail",
             "args":[
@@ -124,8 +130,18 @@ module.exports.do = function(req, res){
                     type: "String",
                     info: "v: prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See Attaching Data to Messages for more information."
                 }
+            ],
+            'callbacks':[
+                {
+                    'name':'error',
+                    'info': 'Error'
+                },
+                {
+                    'name':'success',
+                    'info': 'Success'
+                }
             ]
-        },
+        },  
         {
             "name":"sendEmailMIME",
             "args":[
@@ -224,6 +240,16 @@ module.exports.do = function(req, res){
                     type: "String",
                     info: "v: prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See Attaching Data to Messages for more information."
                 }
+            ],
+            'callbacks':[
+                {
+                    'name':'error',
+                    'info': 'Error'
+                },
+                {
+                    'name':'success',
+                    'info': 'Success'
+                }
             ]
         },
         {
@@ -244,6 +270,16 @@ module.exports.do = function(req, res){
                     type: "String",
                     info: "is will help you to get the raw MIME True || False (def)."
                 },
+            ],
+            'callbacks':[
+                {
+                    'name':'error',
+                    'info': 'Error'
+                },
+                {
+                    'name':'success',
+                    'info': 'Success'
+                }
             ]
         }]
     })
