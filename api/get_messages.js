@@ -1,6 +1,7 @@
-const _ = require('../lib/functions');
-const request = require('request');
-const async = require('async');
+const _        = require('../lib/functions');
+const _request = require('../request');
+const request  = require('request');
+const async    = require('async');
 
 module.exports = (req, res) => {
 
@@ -23,17 +24,26 @@ module.exports = (req, res) => {
 
     /*Get mailgun logs with stored filter*/
 
-    request.get(`https://api.mailgun.net/v3/${domain}/events?event=stored`, (err, response, body) => {
+    _request(apiKey, `https://api.mailgun.net/v3/${domain}/events?event=stored`, (err, response, storedEvents) => {
         if(err || response.statusCode !== 200) {
-            r.contextWrites[to] = (err) ? JSON.stringify(err) : '(' + response.statusCode + ') ' + body;
+            r.contextWrites[to] = (err) ? JSON.stringify(err) : '(' + response.statusCode + ') ' + storedEvents;
             r.callback = 'error';
 
             res.status(200).send(r);
             return;
         }
 
-        let messageUrls  = [],
-            storedEvents = JSON.parse(body);
+        let messageUrls  = [];
+
+        if(storedEvents['items'].length < 1) {
+            r.contextWrites[to] = {};
+            r.callback = 'success';
+
+            res.status(200).send(r);
+            return;
+        }
+
+        console.log(storedEvents)
 
         for (let i = 0; i < storedEvents['items'].length; i++) {
             
@@ -43,7 +53,6 @@ module.exports = (req, res) => {
             */
             
             messageUrls[messageUrls.length] = (callback) => {
-
                 request.get(
                     {
                         url:     storedEvents['items'][i]['storage']['url'],
@@ -54,6 +63,7 @@ module.exports = (req, res) => {
                         if(err || response.statusCode !== 200) callback(null, i);
                         callback(null, body);
                     }
+
                 ).auth('api', apiKey);
             }
         }
@@ -66,11 +76,11 @@ module.exports = (req, res) => {
 
                 /* Bug in rpt there */
                 
-                r.contextWrites[to].push(JSON.parse(results[i]));
+                r.contextWrites[to].push(results[i]);
             }
 
             res.status(200).send(r);
         });
 
-    }).auth('api', apiKey);
+    });
 };

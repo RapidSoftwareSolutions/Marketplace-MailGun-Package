@@ -1,5 +1,6 @@
 const       _ = require('../lib/functions');
 const mailgun = require('mailgun-js');
+const request = require('request');
 const fs      = require('fs');
 
 const apiArgs = ['html', 'o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'h:X-My-Header', 'v:my-var'];
@@ -19,6 +20,7 @@ module.exports = (req, res) => {
         subject,
         text, 
         inline,
+        attachment,
         to = "to",
         'o:require-tls': oRequireTls,
         'o:skip-verification': oSkipVerification,
@@ -30,14 +32,7 @@ module.exports = (req, res) => {
         return;
     }
 
-    /*
-    Attachments can be sent using either the attachment or inline parameters. 
-    inline parameter can be use to send an attachment with inline disposition. 
-    It can be used to send inline images. 
-    Both types are supported with same mechanisms as described, 
-    we will just use attachment parameter in the documentation below but same stands for inline.
-    */
-    if(inline && _.checkUrl(inline)) inline = request(inline);
+    if( (inline && _.checkUrl(inline)) || attachment ) attachment = request(inline || attachment);
 
      /* MailGun SDK Initialization */
     let mail = mailgun({ apiKey: apiKey, domain: domain });
@@ -51,16 +46,7 @@ module.exports = (req, res) => {
         'o:skip-verification': oSkipVerification || "False",
     };
 
-    if(req.file || inline) {
-        data.attachment = inline || new mail.Attachment({
-            data:        fs.createReadStream(req.file.path), 
-            filename:    req.file.originalname,
-            contentType: req.file.mimetype,
-            knownLength: req.file.size    
-        });
-
-        fs.unlink(req.file.path);
-    }
+    if(attachment) data.attachment = attachment;
 
     // req.body.args = req.body.args || req.body
     
