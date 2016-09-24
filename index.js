@@ -7,7 +7,7 @@ const express       = require('express'),
 
 /** SET UP **/
 const PORT = process.env.PORT || 8080;
-global.PACKAGE_NAME = "marketplace-mailgun-package";
+global.PACKAGE_NAME = "MailGun";
 
 if (!fs.existsSync('/tmp/marketplace-mailgun-package')) {
     fs.mkdirSync('/tmp/marketplace-mailgun-package');
