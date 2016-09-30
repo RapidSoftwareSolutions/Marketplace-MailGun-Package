@@ -19,8 +19,8 @@ Sends an email.
 | ----------------------| -------| -------------|
 | `apiKey`*             |string  | The api key obtained from MailGun. |
 | `domain`*             |string  | The domain obtained from MailGun. |
-| `from`*               |string  | Email address. |
-| `to`*                 |string  | Email address of the recipient(s). |
+| `mFrom`*               |string  | Email address. |
+| `mTo`*                 |string  | Email address of the recipient(s). |
 | `cc`                  |string  | Same as To but for Bcc |
 | `subject`             |string  |Message subject|
 | `text`                |string  |Body of the message. (text version)|
@@ -44,8 +44,8 @@ Sends an email.
 {
 	"apiKey": "YOUR_API_KEY",
 	"domain": "YOUR_DOMAIN_NAME",
-	"from": "FOO@YOUR_DOMAIN_NAME",
-	"to": "bar@example.com",
+	"mFrom": "FOO@YOUR_DOMAIN_NAME",
+	"mTo": "bar@example.com",
 	"subject": "Hello",
 	"text": "From with &#10084;"
 }
@@ -72,8 +72,8 @@ Posts a message in MIME format.
 {
 	"apiKey": "YOUR_API_KEY",
 	"domain": "YOUR_DOMAIN_NAME",
-	"from": "FOO@YOUR_DOMAIN_NAME",
-	"to": "bar@example.com",
+	"mFrom": "FOO@YOUR_DOMAIN_NAME",
+	"mTo": "bar@example.com",
 	"subject": "Hello",
 	"text": "From RapidAPI with &#10084;"
 }
