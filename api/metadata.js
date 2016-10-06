@@ -7,7 +7,7 @@ module.exports.do = function(req, res){
         'image': 'https://avatars2.githubusercontent.com/u/447686?v=3&s=200',
         'repo': 'https://github.com/RapidSoftwareSolutions/marketplace-mailgun-package',
          'accounts': {
-            'domain': 'mailgub.com',
+            'domain': 'mailgun.com',
             'credentials': [
                 'apiKey',
                 'domain'
