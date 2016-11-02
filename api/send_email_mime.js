@@ -62,11 +62,11 @@ module.exports = (req, res) => {
         
         mail.messages().sendMime(dataToSend, (err, body) => {
             if(err) {
-                r.contextWrites[to] = JSON.stringify(err);
+                r.contextWrites[to] = err;
                 r.callback = 'error';
             }
             else {
-                r.contextWrites[to] = JSON.stringify(body);
+                r.contextWrites[to] = body;
                 r.callback = 'success';
             }
 

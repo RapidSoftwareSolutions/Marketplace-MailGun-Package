@@ -18,7 +18,7 @@ const app = express();
 app.use(bodyParser.json(({limit: '50mb'})));
 app.use(bodyParser.urlencoded({limit: '50mb', extended:true}));
 
-app.get(`/api/${PACKAGE_NAME}`, require('./api/metadata.js').do);
+app.all(`/api/${PACKAGE_NAME}`, require('./api/metadata.js').do);
 
 app.post(`/api/${PACKAGE_NAME}/sendEmail`, require('./api/send_email.js'));
 app.post(`/api/${PACKAGE_NAME}/sendEmailMIME`, require('./api/send_email_mime.js'));

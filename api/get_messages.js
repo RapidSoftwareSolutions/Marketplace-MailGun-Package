@@ -25,6 +25,7 @@ module.exports = (req, res) => {
     /*Get mailgun logs with stored filter*/
 
     _request(apiKey, `https://api.mailgun.net/v3/${domain}/events?event=stored`, (err, response, storedEvents) => {
+        console.log(storedEvents);
         if(err || response.statusCode !== 200) {
             r.contextWrites[to] = (err) ? JSON.stringify(err) : '(' + response.statusCode + ') ' + storedEvents;
             r.callback = 'error';
@@ -74,7 +75,7 @@ module.exports = (req, res) => {
 
                 /* Bug in rpt there */
                 
-                r.contextWrites[to].push(results[i]);
+                r.contextWrites[to].push(JSON.parse(results[i]));
             }
 
             res.status(200).send(r);
