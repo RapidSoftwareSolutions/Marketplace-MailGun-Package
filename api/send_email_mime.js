@@ -57,9 +57,6 @@ module.exports = (req, res) => {
         dataToSend.to = mTo;
         dataToSend.message = message.toString('utf-8');
 
-
-        console.log(message.toString('utf-8'));
-        
         mail.messages().sendMime(dataToSend, (err, body) => {
             if(err) {
                 r.contextWrites[to] = err;
