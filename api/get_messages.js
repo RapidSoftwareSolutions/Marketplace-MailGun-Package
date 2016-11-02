@@ -43,8 +43,6 @@ module.exports = (req, res) => {
             return;
         }
 
-        console.log(storedEvents)
-
         for (let i = 0; i < storedEvents['items'].length; i++) {
             
             /* 
