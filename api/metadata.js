@@ -18,12 +18,12 @@ module.exports.do = function(req, res){
             "args":[
                 {
                     name: "apiKey",
-                    type: "Credentials",
+                    type: "credentials",
                     info: "The api key obtained from MailGun.",
                 },
                 {
                     name: "domain",
-                    type: "Credentials",
+                    type: "String",
                     info: "Mailgun account contain email domain.",
                 },
                 {
@@ -148,12 +148,12 @@ module.exports.do = function(req, res){
             "args":[
                 {
                     name: "apiKey",
-                    type: "Credentials",
+                    type: "credentials",
                     info: "The api key obtained from MailGun.",
                 },
                 {
                     name: "domain",
-                    type: "Credentials",
+                    type: "String",
                     info: "Mailgun account contain email domain.",
                 },
                 {
@@ -258,12 +258,12 @@ module.exports.do = function(req, res){
             "args":[
                 {
                     name: "apiKey",
-                    type: "Credentials",
+                    type: "credentials",
                     info: "The api key obtained from MailGun."
                 },
                 {
                     name: "domain",
-                    type: "Credentials",
+                    type: "String",
                     info: "Mailgun account contain email domain."
                 },
                 {

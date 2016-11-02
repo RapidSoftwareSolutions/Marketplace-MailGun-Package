@@ -17,7 +17,7 @@ Sends an email.
 
 | Field                 | Type   | Description  |
 | ----------------------| -------| -------------|
-| `apiKey`*             |string  | The api key obtained from MailGun. |
+| `apiKey`*             |credentials  | The api key obtained from MailGun. |
 | `domain`*             |string  | The domain obtained from MailGun. |
 | `mFrom`*               |string  | Email address. |
 | `mTo`*                 |string  | Email address of the recipient(s). |
@@ -96,7 +96,7 @@ Returns stored messages.
 
 | Field             | Type    | Description                                                                              |
 | ------------------|---------| -----------------------------------------------------------------------------------------|
-| `apiKey`*         |string   | The api key obtained from MailGun.                                                       |
+| `apiKey`*         |credentials   | The api key obtained from MailGun.                                                       |
 | `domain`*         |string   | The domain obtained from MailGun.                                                        |
 | `mimeRaw`         |string   | This will help you to get the raw MIME (*). Set `True` or `False`. `False` by default.        |
 
