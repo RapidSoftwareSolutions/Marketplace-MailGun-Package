@@ -28,14 +28,14 @@ module.exports = (req, res) => {
         = req.body.args || req.body;
 
     if(!apiKey || !mFrom || !mTo) {
-        _.echoBadEnd(r, to, res);
+        _.echoBadEnd(r, to, res, 'apiKey, mFrom, mTo');
         return;
     }
 
     if( (inline && _.checkUrl(inline)) || attachment ) attachment = request(inline || attachment);
 
      /* MailGun SDK Initialization */
-    let mail = mailgun({ apiKey: apiKey, domain: domain });
+    let mail = mailgun({ apiKey, domain });
 
     let data = {
         from: mFrom,
@@ -46,14 +46,27 @@ module.exports = (req, res) => {
         'o:skip-verification': oSkipVerification || "False",
     };
 
-    if(attachment) data.attachment = attachment;
-
-    // req.body.args = req.body.args || req.body
+    if(attachment) data.attachment = attachment; 
     
     Object.keys(req.body.args).forEach((key) => {
         if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
             data[key] = req.body.args[key];
     });
+
+    if(data['v:my-var'] && typeof data['v:my-var'] == 'string') {
+        try {
+            JSON.parse(data['v:my-var']);
+        } catch(e) {
+            r.callback = 'error';
+            r.contextWrites[to] = {
+                status_code: 'JSON_VALIDATION',
+                status_msg: 'Syntax error. Incorrect input JSON. Please, check fields with JSON input.'
+            };
+
+            res.status(200).send(r); 
+            return;
+        }
+    } 
 
     mail.messages().send(data, (err, body) => {
         if(err) {

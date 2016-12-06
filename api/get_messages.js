@@ -18,14 +18,13 @@ module.exports = (req, res) => {
         = req.body.args;
 
     if(!apiKey || !domain) {
-        _.echoBadEnd(r, to, res);
+        _.echoBadEnd(r, to, res, 'apiKey, domain');
         return;
     }
 
     /*Get mailgun logs with stored filter*/
 
     _request(apiKey, `https://api.mailgun.net/v3/${domain}/events?event=stored`, (err, response, storedEvents) => {
-        console.log(storedEvents);
         if(err || response.statusCode !== 200) {
             r.contextWrites[to] = (err) ? JSON.stringify(err) : '(' + response.statusCode + ') ' + storedEvents;
             r.callback = 'error';
@@ -71,10 +70,7 @@ module.exports = (req, res) => {
             r.contextWrites[to] = [];
             r.callback = 'success';
 
-            for (let i = 0; i < results.length; i++) {
-
-                /* Bug in rpt there */
-                
+            for (let i = 0; i < results.length; i++) {                
                 r.contextWrites[to].push(JSON.parse(results[i]));
             }
 

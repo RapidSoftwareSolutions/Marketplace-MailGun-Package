@@ -24,7 +24,7 @@ module.exports = (req, res) => {
         = req.body.args;
 
     if(!apiKey || !mFrom || !mTo) {
-        _.echoBadEnd(r, to, res);
+        _.echoBadEnd(r, to, res, 'apiKey, mFrom, mTo');
         return;
     }
 
@@ -44,6 +44,21 @@ module.exports = (req, res) => {
         if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
             dataToSend[key] = req.body.args[key];
     });
+
+    if(dataToSend['v:my-var'] && typeof data['v:my-var'] == 'string') {
+        try {
+            JSON.parse(data['v:my-var']);
+        } catch(e) {
+            r.callback = 'error';
+            r.contextWrites[to] = {
+                status_code: 'JSON_VALIDATION',
+                status_msg: 'Syntax error. Incorrect input JSON. Please, check fields with JSON input.'
+            };
+
+            res.status(200).send(r); 
+            return;
+        }
+    } 
 
     composed.build((err, message) => {
         if(err) {
