@@ -6,7 +6,7 @@ module.exports.do = function(req, res){
         "description": "Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.",
         'image': 'https://avatars2.githubusercontent.com/u/447686?v=3&s=200',
         'repo': 'https://github.com/RapidSoftwareSolutions/marketplace-mailgun-package',
-        'keywords': ["API", "analytics", "email", "emails", "marketing", "smb"]
+        'keywords': ["API", "analytics", "email", "emails", "marketing", "smb"],
         'accounts': {
             'domain': 'mailgun.com',
             'credentials': [
