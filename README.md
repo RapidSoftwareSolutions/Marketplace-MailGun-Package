@@ -1,4 +1,6 @@
 [info]:https://github.com/RapidSoftwareSolutions/Marketplace-MailGun-Package/blob/master/instructions/domaininfo.png?raw=true
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/MailGun/functions?utm_source=RapidAPIGitHub_MailGunFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 
 # MailGun Package
 Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.
