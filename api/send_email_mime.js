@@ -42,10 +42,10 @@ module.exports = (req, res) => {
     });
 
     if (typeof mTo == 'object') {
-        data.to = mTo.join();
+        dataToSend.to = mTo.join();
     }
     else {
-        data.to = mTo;
+        dataToSend.to = mTo;
     }
 
     Object.keys(req.body.args).forEach((key) => {
@@ -53,10 +53,10 @@ module.exports = (req, res) => {
         {
             if (key == 'o:deliverytime') {
                 let dateTime = date.create(req.body.args[key]);
-                data[key] = dateTime.format('w, d n Y H:M:S') + ' GMT';
+                dataToSend.key = dateTime.format('w, d n Y H:M:S') + ' GMT';
             }
             else {
-                data[key] = req.body.args[key];
+                dataToSend.key = req.body.args[key];
             }
         }
     });

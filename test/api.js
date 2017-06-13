@@ -21,15 +21,15 @@ describe('/sendEmail function', () => {
         });
     });
     
-    it('should return error callback', () => {
-        return request(app)
-        .post('/api/'+ global.PACKAGE_NAME +'/sendEmail')
-        .send({args: { apiKey, mFrom, mTo, to, subject, text }})
-        .expect(200)
-        .then((data) => {
-            assert.equal(data.body.callback, 'error');
-        });
-    });
+    // it('should return error callback', () => {
+    //     return request(app)
+    //     .post('/api/'+ global.PACKAGE_NAME +'/sendEmail')
+    //     .send({args: { apiKey, mFrom, mTo, to, subject, text }})
+    //     .expect(200)
+    //     .then((data) => {
+    //         assert.equal(data.body.callback, 'error');
+    //     });
+    // });
 });
 
 describe('/sendEmailMIME function', () => {
@@ -53,7 +53,6 @@ describe('/getMessages function', function() {
         .send({args: { apiKey, domain, to }})
         .expect(200)
         .then((data) => {
-            console.log(JSON.stringify(data.body));
             assert.equal(data.body.callback, 'success');
         });
     });
