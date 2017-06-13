@@ -1,6 +1,7 @@
 const _ = require('../lib/functions');
 const mailgun = require('mailgun-js');
 const mailcomposer = require('mailcomposer');
+const date    = require('node-datetime');
 
 const apiArgs = ['html', 'o:tag', 'o:campaign', 'o:dkim', 'o:deliverytime', 'o:testmode', 'o:tracking', 'o:tracking-clicks', 'o:tracking-opens', 'h:X-My-Header', 'v:my-var'];
 
@@ -11,16 +12,16 @@ module.exports = (req, res) => {
     let dataToSend = {},
         r = { callback: "", contextWrites: {} };
 
-    let { 
+    let {
         apiKey,
         domain,
-        mFrom, 
-        mTo, 
+        mFrom,
+        mTo,
         subject,
-        text, 
+        text,
         html = '<p>' + text + '</p>',
         to = "to"
-    } 
+    }
         = req.body.args;
 
     if(!apiKey || !mFrom || !mTo) {
@@ -34,15 +35,30 @@ module.exports = (req, res) => {
     /* Create read stream */
     let composed = mailcomposer({
         from: mFrom,
-        to: mTo,
+        // to: mTo,
         subject: subject,
         text: text,
         html: html
     });
 
+    if (typeof mTo == 'object') {
+        data.to = mTo.join();
+    }
+    else {
+        data.to = mTo;
+    }
+
     Object.keys(req.body.args).forEach((key) => {
         if( apiArgs.indexOf(key) !== -1 && req.body.args[key] )
-            dataToSend[key] = req.body.args[key];
+        {
+            if (key == 'o:deliverytime') {
+                let dateTime = date.create(req.body.args[key]);
+                data[key] = dateTime.format('w, d n Y H:M:S') + ' GMT';
+            }
+            else {
+                data[key] = req.body.args[key];
+            }
+        }
     });
 
     if(dataToSend['v:my-var'] && typeof data['v:my-var'] == 'string') {
@@ -55,10 +71,10 @@ module.exports = (req, res) => {
                 status_msg: 'Syntax error. Incorrect input JSON. Please, check fields with JSON input.'
             };
 
-            res.status(200).send(r); 
+            res.status(200).send(r);
             return;
         }
-    } 
+    }
 
     composed.build((err, message) => {
         if(err) {

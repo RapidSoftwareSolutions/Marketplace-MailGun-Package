@@ -20,7 +20,8 @@
     "mailcomposer": "*",
     "mailgun-js": "^0.7.12",
     "multer": "^1.2.0",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "node-datetime": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

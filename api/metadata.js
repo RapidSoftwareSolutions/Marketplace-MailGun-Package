@@ -23,13 +23,13 @@ module.exports.do = function(req, res){
                     name: "apiKey",
                     type: "credentials",
                     info: "The api key obtained from MailGun.",
-                    required: true,
+                    required: true
                 },
                 {
                     name: "domain",
                     type: "String",
                     info: "Mailgun account contain email domain.",
-                    required: true,
+                    required: true
                 },
                 {
                     name: "mFrom",
@@ -39,21 +39,39 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "mTo",
-                    type: "String",
+                    type: "List",
                     info: "Email address of the recipient(s). ('Bob <bob@host.com>'). You can use commas to separate multiple recipients.",
-                    required: true
+                    required: true,
+                    structure: {
+                        name: "email",
+                        type: "String",
+                        info: "Email",
+                        required: true
+                    }
                 },
                 {
                     name: "cc",
-                    type: "String",
+                    type: "List",
                     info: "Same as 'To' but for Cc.",
-                    required: false
+                    required: false,
+                    structure: {
+                        name: "email",
+                        type: "String",
+                        info: "Email",
+                        required: false
+                    }
                 },
                 {
                     name: "bcc",
-                    type: "String",
+                    type: "List",
                     info: "Same as 'To' but for Bcc.",
-                    required: false
+                    required: false,
+                    structure: {
+                        name: "email",
+                        type: "String",
+                        info: "Email",
+                        required: false
+                    }
                 },
                 {
                     name: "subject",
@@ -87,9 +105,15 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "o:tag",
-                    type: "String",
+                    type: "List",
                     info: "Tag string.",
-                    required: false
+                    required: false,
+                    structure: {
+                        "name": "tag",
+                        "type": "String",
+                        "info": "Tag",
+                        "required": true
+                    }
                 },
                 {
                     name: "o:campaign",
@@ -99,49 +123,54 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "o:dkim",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Enables/disables DKIM signatures on per-message basis. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:deliverytime",
-                    type: "String",
+                    type: "DatePicker",
                     info: "Desired time of delivery. See Date Format. Note: Messages can be scheduled for a maximum of 3 days in the future.",
                     required: false
                 },
                 {
                     name: "o:testmode",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Enables sending in test mode. Pass yes if needed. See Sending in Test Mode.",
                     required: false
                 },
                 {
                     name: "o:tracking",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Toggles tracking on a per-message basis, see Tracking Messages for details. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:tracking-clicks",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no", "htmlonly"],
                     info: "Toggles clicks tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes, no or htmlonly.",
                     required: false
                 },
                 {
                     name: "o:tracking-opens",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Toggles opens tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:require-tls",
-                    type: "String",
+                    type: "Boolean",
                     info: "This requires the message only be sent over a TLS connection. (True or False)",
                     required: false
                 },
                 {
                     name: "o:skip-verification",
-                    type: "String",
+                    type: "Boolean",
                     info: "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
                     required: false
                 },
@@ -177,13 +206,13 @@ module.exports.do = function(req, res){
                     name: "apiKey",
                     type: "credentials",
                     info: "The api key obtained from MailGun.",
-                    required: true,
+                    required: true
                 },
                 {
                     name: "domain",
                     type: "String",
                     info: "Mailgun account contain email domain.",
-                    required: true,
+                    required: true
                 },
                 {
                     name: "mFrom",
@@ -193,9 +222,15 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "mTo",
-                    type: "String",
+                    type: "List",
                     info: "Email address of the recipient(s). ('Bob <bob@host.com>'). You can use commas to separate multiple recipients.",
-                    required: true
+                    required: true,
+                    structure: {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": true
+                    }
                 },
                 {
                     name: "subject",
@@ -217,9 +252,15 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "o:tag",
-                    type: "String",
+                    type: "List",
                     info: "Tag string.",
-                    required: false
+                    required: false,
+                    structure: {
+                        "name": "tag",
+                        "type": "String",
+                        "info": "Tag",
+                        "required": false
+                    }
                 },
                 {
                     name: "o:campaign",
@@ -229,49 +270,54 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "o:dkim",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Enables/disables DKIM signatures on per-message basis. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:deliverytime",
-                    type: "String",
+                    type: "DatePicker",
                     info: "Desired time of delivery. See Date Format. Note: Messages can be scheduled for a maximum of 3 days in the future.",
                     required: false
                 },
                 {
                     name: "o:testmode",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Enables sending in test mode. Pass yes if needed. See Sending in Test Mode.",
                     required: false
                 },
                 {
                     name: "o:tracking",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Toggles tracking on a per-message basis, see Tracking Messages for details. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:tracking-clicks",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Toggles clicks tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes, no or htmlonly.",
                     required: false
                 },
                 {
                     name: "o:tracking-opens",
-                    type: "String",
+                    type: "Select",
+                    options: ["yes", "no"],
                     info: "Toggles opens tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes or no.",
                     required: false
                 },
                 {
                     name: "o:require-tls",
-                    type: "String",
+                    type: "Boolean",
                     info: "This requires the message only be sent over a TLS connection. (True or False)",
                     required: false
                 },
                 {
                     name: "o:skip-verification",
-                    type: "String",
+                    type: "Boolean",
                     info: "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
                     required: false
                 },
@@ -317,10 +363,10 @@ module.exports.do = function(req, res){
                 },
                 {
                     name: "rawMime",
-                    type: "String",
+                    type: "Boolean",
                     info: "It will help you to get the raw MIME True OR False (def).",
                     required: false
-                },
+                }
             ],
             'callbacks':[
                 {
