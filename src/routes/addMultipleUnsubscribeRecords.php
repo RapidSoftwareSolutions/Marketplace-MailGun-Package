@@ -30,6 +30,7 @@ $app->post('/api/MailGun/addMultipleUnsubscribeRecords', function ($request, $re
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
     $requestParams['auth'] = ['api',$data['apiKey']];
+    $requestParams['json'] = $data['json']['unsubscribeList'];
 
     try {
         $resp = $client->post($query_str, $requestParams);
