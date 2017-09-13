@@ -15,7 +15,7 @@ $app->post('/api/MailGun/addMemberToMailingList', function ($request, $response)
     $requiredParams = ['apiKey'=>'apiKey','address'=>'address','name'=>'name','subscribed'=>'subscribed','upsert'=>'upsert'];
     $optionalParams = ['vars'=>'vars'];
     $bodyParams = [
-       'form_params' => ['name','vars','subscribed','upsert']
+       'form_params' => ['name','vars','subscribed','upsert','address']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
