@@ -11,7 +11,6 @@ Use the MailGun API to access the product's features, such as sending E-Mails, w
 3. Create or select domain.
 4. Copy domain name and apiKey:
 
-![Domain info][info]
 
 
 ## Custom datatypes: 
