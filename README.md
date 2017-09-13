@@ -9,7 +9,7 @@ Use the MailGun API to access the product's features, such as sending E-Mails, w
 1. [SignUp](https://mailgun.com/signup) or [SignIn](https://mailgun.com/sessions/new) to your MailGun account.
 2. Go to ***Domains*** tab.
 3. Create or select domain.
-4. Copy domain name and apiKey:
+4. Copy domain name and apiKey
 
 
 

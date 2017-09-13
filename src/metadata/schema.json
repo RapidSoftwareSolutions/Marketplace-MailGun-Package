@@ -18,6 +18,12 @@
             "apiKey"
         ]
     },
+    "steps": [
+        "SignIn https://mailgun.com/sessions/new to your MailGun account.",
+        "Go to Domains tab.",
+        "Create or select domain.",
+        "Copy domain name and apiKey"
+    ],
     "events": [
         {
             "name": "webhookEvent",
