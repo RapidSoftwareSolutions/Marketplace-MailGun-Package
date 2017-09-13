@@ -30,6 +30,7 @@ $app->post('/api/MailGun/addMultipleBounces', function ($request, $response) {
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
     $requestParams['auth'] = ['api',$data['apiKey']];
+    $requestParams['json'] = $requestParams['json']['bounces'];
 
     try {
         $resp = $client->post($query_str, $requestParams);
