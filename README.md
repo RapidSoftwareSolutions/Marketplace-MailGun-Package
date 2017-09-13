@@ -344,14 +344,6 @@ Add an address to the unsubscribe table.
 | tag      | String     | Tag to unsubscribe from, use * to unsubscribe an address from all domain’s correspondence (optional, default: *)
 | createdAt| String     | Timestamp of a bounce event.
 
-## MailGun.addMultipleUnsubscribeRecords
-Add multiple unsubscribe records to the unsubscribe list in a single API call.
-
-| Field          | Type       | Description
-|----------------|------------|----------
-| apiKey         | Credentials| The api key obtained from MailGun.
-| domain         | String     | Name of the domain.
-| unsubscribeList| Array      | Unsubscribe list
 
 ## MailGun.deleteUnsubscribeRecords
 Remove an address from the unsubscribes list. If tag parameter is not provided, completely removes an address from the list.
@@ -391,14 +383,6 @@ Add an address to the complaints list.
 | address  | String     | Valid email address
 | createdAt| String     | Timestamp of a bounce event.
 
-## MailGun.addMultipleComplaints
-Add an address to the complaints list.
-
-| Field     | Type       | Description
-|-----------|------------|----------
-| apiKey    | Credentials| The api key obtained from MailGun.
-| domain    | String     | Name of the domain.
-| complaints| Array      | Complaints array
 
 ## MailGun.deleteComplaint
 Remove a given spam complaint.
