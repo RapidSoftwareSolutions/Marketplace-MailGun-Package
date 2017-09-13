@@ -1,0 +1,3687 @@
+{
+    "package": "MailGun",
+    "tagline": "MailGun API",
+    "description": "Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.",
+    "image": "https:\/\/logo.clearbit.com\/mailgun.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-MailGun-Package",
+    "keywords": [
+        "API",
+        "analytics",
+        "email",
+        "emails",
+        "marketing",
+        "smb"
+    ],
+    "accounts": {
+        "domain": "mailgun.com",
+        "credentials": [
+            "apiKey"
+        ]
+    },
+    "events": [
+        {
+            "name": "webhookEvent",
+            "description": "This API allows you to create, access, and delete webhooks programmatically.",
+            "payload": {
+                "webhooks": {
+                    "open": {
+                        "url": "http:\/\/postbin.heroku.com\/860bcd65"
+                    },
+                    "click": {
+                        "url": "http:\/\/postbin.heroku.com\/860bcd65"
+                    }
+                }
+            },
+            "steps": [
+                "Navigate to createWebhook block",
+                "Set url to __WEBHOOK_URL__"
+            ],
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "string",
+                    "info": "The api key obtained from MailGun.",
+                    "required": false
+                }
+            ]
+        }
+    ],
+    "blocks": [
+        {
+            "name": "sendEmail",
+            "description": "Sends an email.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "mFrom",
+                    "type": "String",
+                    "info": "Email address for From header.",
+                    "required": true
+                },
+                {
+                    "name": "mTo",
+                    "type": "List",
+                    "info": "Email address of the recipient(s). ('Bob bob@host.com'). You can use commas to separate multiple recipients.",
+                    "required": true,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "cc",
+                    "type": "List",
+                    "info": "Same as 'To' but for Cc.",
+                    "required": false,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "bcc",
+                    "type": "List",
+                    "info": "Same as 'To' but for Bcc.",
+                    "required": false,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "subject",
+                    "type": "String",
+                    "info": "Message subject.",
+                    "required": false
+                },
+                {
+                    "name": "text",
+                    "type": "String",
+                    "info": "Body of the message. (text version).",
+                    "required": false
+                },
+                {
+                    "name": "html",
+                    "type": "String",
+                    "info": "Body of the message. (HTML version).",
+                    "required": false
+                },
+                {
+                    "name": "inline",
+                    "type": "String",
+                    "info": "Attachment with inline disposition.",
+                    "required": false
+                },
+                {
+                    "name": "o:tag",
+                    "type": "List",
+                    "info": "Tag string.",
+                    "required": false,
+                    "structure": {
+                        "name": "tag",
+                        "type": "String",
+                        "info": "Tag",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "o:campaign",
+                    "type": "String",
+                    "info": "Id of the campaign the message belongs to. See um-campaign-analytics for details.",
+                    "required": false
+                },
+                {
+                    "name": "o:dkim",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Enables\/disables DKIM signatures on per-message basis. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:deliverytime",
+                    "type": "DatePicker",
+                    "info": "Desired time of delivery. See Date Format. Note: Messages can be scheduled for a maximum of 3 days in the future.",
+                    "required": false
+                },
+                {
+                    "name": "o:testmode",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Enables sending in test mode. Pass yes if needed. See Sending in Test Mode.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Toggles tracking on a per-message basis, see Tracking Messages for details. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking-clicks",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no",
+                        "htmlonly"
+                    ],
+                    "info": "Toggles clicks tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes, no or htmlonly.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking-opens",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Toggles opens tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:require-tls",
+                    "type": "Boolean",
+                    "info": "This requires the message only be sent over a TLS connection. (True or False)",
+                    "required": false
+                },
+                {
+                    "name": "o:skip-verification",
+                    "type": "Boolean",
+                    "info": "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
+                    "required": false
+                },
+                {
+                    "name": "h:X-My-Header",
+                    "type": "String",
+                    "info": "h: prefix followed by an arbitrary value allows to append a custom MIME header to the message (X-My-Header in this case).",
+                    "required": false
+                },
+                {
+                    "name": "v:my-var",
+                    "type": "JSON",
+                    "info": "v: prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See Attaching Data to Messages for more information.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/messages",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "from",
+                            "to",
+                            "bcc",
+                            "subject",
+                            "text",
+                            "html",
+                            "attachment",
+                            "inline",
+                            "o:tag",
+                            "o:campaign",
+                            "o:dkim",
+                            "o:deliverytime",
+                            "o:testmode",
+                            "o:tracking",
+                            "o:tracking-clicks",
+                            "o:tracking-opens",
+                            "o:require-tls",
+                            "o:skip-verification",
+                            "h:X-My-Header",
+                            "v:my-var"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "sendEmailMIME",
+            "description": "Posts a message in MIME format.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "mFrom",
+                    "type": "String",
+                    "info": "Email address for From header.",
+                    "required": true
+                },
+                {
+                    "name": "mTo",
+                    "type": "List",
+                    "info": "Email address of the recipient(s). ('Bob bob@host.com'). You can use commas to separate multiple recipients.",
+                    "required": true,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "cc",
+                    "type": "List",
+                    "info": "Same as 'To' but for Cc.",
+                    "required": false,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "bcc",
+                    "type": "List",
+                    "info": "Same as 'To' but for Bcc.",
+                    "required": false,
+                    "structure": {
+                        "name": "email",
+                        "type": "String",
+                        "info": "Email",
+                        "required": false
+                    }
+                },
+                {
+                    "name": "subject",
+                    "type": "String",
+                    "info": "Message subject.",
+                    "required": false
+                },
+                {
+                    "name": "text",
+                    "type": "String",
+                    "info": "Body of the message. (text version).",
+                    "required": false
+                },
+                {
+                    "name": "html",
+                    "type": "String",
+                    "info": "Body of the message. (HTML version).",
+                    "required": false
+                },
+                {
+                    "name": "inline",
+                    "type": "String",
+                    "info": "Attachment with inline disposition.",
+                    "required": false
+                },
+                {
+                    "name": "o:tag",
+                    "type": "List",
+                    "info": "Tag string.",
+                    "required": false,
+                    "structure": {
+                        "name": "tag",
+                        "type": "String",
+                        "info": "Tag",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "o:campaign",
+                    "type": "String",
+                    "info": "Id of the campaign the message belongs to. See um-campaign-analytics for details.",
+                    "required": false
+                },
+                {
+                    "name": "o:dkim",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Enables\/disables DKIM signatures on per-message basis. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:deliverytime",
+                    "type": "DatePicker",
+                    "info": "Desired time of delivery. See Date Format. Note: Messages can be scheduled for a maximum of 3 days in the future.",
+                    "required": false
+                },
+                {
+                    "name": "o:testmode",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Enables sending in test mode. Pass yes if needed. See Sending in Test Mode.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Toggles tracking on a per-message basis, see Tracking Messages for details. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking-clicks",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no",
+                        "htmlonly"
+                    ],
+                    "info": "Toggles clicks tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes, no or htmlonly.",
+                    "required": false
+                },
+                {
+                    "name": "o:tracking-opens",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Toggles opens tracking on a per-message basis. Has higher priority than domain-level setting. Pass yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "o:require-tls",
+                    "type": "Boolean",
+                    "info": "This requires the message only be sent over a TLS connection. (True or False)",
+                    "required": false
+                },
+                {
+                    "name": "o:skip-verification",
+                    "type": "Boolean",
+                    "info": "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
+                    "required": false
+                },
+                {
+                    "name": "h:X-My-Header",
+                    "type": "String",
+                    "info": "h: prefix followed by an arbitrary value allows to append a custom MIME header to the message (X-My-Header in this case).",
+                    "required": false
+                },
+                {
+                    "name": "v:my-var",
+                    "type": "JSON",
+                    "info": "v: prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See Attaching Data to Messages for more information.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/messages.mime",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "from",
+                            "to",
+                            "bcc",
+                            "subject",
+                            "text",
+                            "html",
+                            "attachment",
+                            "inline",
+                            "o:tag",
+                            "o:campaign",
+                            "o:dkim",
+                            "o:deliverytime",
+                            "o:testmode",
+                            "o:tracking",
+                            "o:tracking-clicks",
+                            "o:tracking-opens",
+                            "o:require-tls",
+                            "o:skip-verification",
+                            "h:X-My-Header",
+                            "v:my-var"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getStoredMessages",
+            "description": "Returns stored messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAcceptedMessages",
+            "description": "Returns accepted messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getRejectedMessages",
+            "description": "Returns rejected messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getDeliveredMessages",
+            "description": "Returns delivered messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getFailedMessages",
+            "description": "Returns failed messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getOpenedMessages",
+            "description": "Returns opened messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getClickedMessages",
+            "description": "Returns clicked messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getUnsubscribedMessages",
+            "description": "Returns unsubscribed messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getComplainedMessages",
+            "description": "Returns complained messages.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "begin",
+                    "type": "DatePicker",
+                    "info": "The beginning of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The end of the search time range. It can be specified as a string (see Date Format) or linux epoch seconds.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "ascending",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "Defines the direction of the search time range and must be provided if the range end time is not specified. Can be either yes or no.",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of entries to return. (300 max)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/events",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "begin",
+                            "end",
+                            "ascending",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllStats",
+            "description": "Returns total stats for a given domain.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Mailgun account contain email domain.",
+                    "required": true
+                },
+                {
+                    "name": "event",
+                    "type": "String",
+                    "info": "The type of the event.",
+                    "required": true
+                },
+                {
+                    "name": "start",
+                    "type": "DatePicker",
+                    "info": "The starting time. Should be in unix epoch format.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The ending date. Should be in unix epoch format.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "resolution",
+                    "type": "Select",
+                    "options": [
+                        "hour",
+                        "day",
+                        "month"
+                    ],
+                    "info": "Can be either hour, day or month. Default: day",
+                    "required": false
+                },
+                {
+                    "name": "duration",
+                    "type": "String",
+                    "info": "Period of time with resoluton encoded.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/stats\/total",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "event",
+                            "start",
+                            "end",
+                            "resolution",
+                            "duration"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getEventStats",
+            "description": "Returns a list of event stats items. Each record represents counts for one event per one day.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return. (100 by default)",
+                    "required": false
+                },
+                {
+                    "name": "skip",
+                    "type": "Number",
+                    "info": "Number of records to skip.",
+                    "required": false
+                },
+                {
+                    "name": "event",
+                    "type": "String",
+                    "info": "Name of the event to receive the stats for. Note that you can specify this parameter multiple times to fetch stats for several events at the same time.",
+                    "required": false
+                },
+                {
+                    "name": "startDate",
+                    "type": "String",
+                    "info": "The date to receive the stats starting from. Should have ISO8601 format (YYYY-MM-DD).",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "start-date",
+                        "format": "toFormat:{Y-m-d}"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/stats",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit",
+                            "skip",
+                            "event",
+                            "start-date"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllTags",
+            "description": "Returns a list of tags for a domain. Provides with the pagination urls if the result set is to long to be returned in a single response.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return. (100 by default)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/tags",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleTag",
+            "description": "Returns a list of tags for a domain. Provides with the pagination urls if the result set is to long to be returned in a single response.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Name of the tag.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/tags\/{$data['tag']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "updateTag",
+            "description": "Updates a given tag with the information provided.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Name of the tag.",
+                    "required": true
+                },
+                {
+                    "name": "description",
+                    "type": "String",
+                    "info": "Optional description of a tag.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/tags\/{$data['tag']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "description"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getTagStats",
+            "description": "Returns statistics for a given tag.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Name of the tag.",
+                    "required": true
+                },
+                {
+                    "name": "event",
+                    "type": "String",
+                    "info": "The type of the event.",
+                    "required": true
+                },
+                {
+                    "name": "start",
+                    "type": "DatePicker",
+                    "info": "The starting time. Should be in unix epoch format.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "end",
+                    "type": "DatePicker",
+                    "info": "The ending date. Should be in unix epoch format.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{unixtime}"
+                    }
+                },
+                {
+                    "name": "resolution",
+                    "type": "Select",
+                    "options": [
+                        "hour",
+                        "day",
+                        "month"
+                    ],
+                    "info": "Can be either hour, day or month. Default: day",
+                    "required": false
+                },
+                {
+                    "name": "duration",
+                    "type": "String",
+                    "info": "Period of time with resoluton encoded.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/tags\/{$data['tag']}\/stats",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "event",
+                            "start",
+                            "end",
+                            "resolution",
+                            "duration"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteTag",
+            "description": "Deletes the tag. The statistics for the tag are not destroyed.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Name of the tag.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/tags\/{$data['tag']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllBounces",
+            "description": "Paginate over a list of bounces for a domain.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return (optional, default: 100, max: 10000)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleBounce",
+            "description": "Fetch a single bounce event by a given email address. Useful to check if a given email address has bounced before.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "String",
+                    "info": "Email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces\/{$data['email']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addBounce",
+            "description": "Add a bounce record to the bounce list. Updates the existing record if the address is already there.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": false
+                },
+                {
+                    "name": "code",
+                    "type": "String",
+                    "info": "Error code",
+                    "required": false
+                },
+                {
+                    "name": "error",
+                    "type": "String",
+                    "info": "Error description (default: empty string)",
+                    "required": false
+                },
+                {
+                    "name": "createdAt",
+                    "type": "String",
+                    "info": "Timestamp of a bounce event.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "created_at",
+                        "format": "toFormat:{unixtime}"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "address",
+                            "code",
+                            "error",
+                            "created_at"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addMultipleBounces",
+            "description": "Add multiple bounce records to the bounce list in a single API call.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "bounces",
+                    "type": "Array",
+                    "info": "Records to the bounce list.",
+                    "required": true,
+                    "structure": [
+                        {
+                            "name": "address",
+                            "type": "String",
+                            "info": "Valid email address",
+                            "required": false
+                        },
+                        {
+                            "name": "code",
+                            "type": "String",
+                            "info": "Error code",
+                            "required": false
+                        },
+                        {
+                            "name": "error",
+                            "type": "String",
+                            "info": "Error description (default: empty string)",
+                            "required": false
+                        },
+                        {
+                            "name": "createdAt",
+                            "type": "String",
+                            "info": "Timestamp of a bounce event.",
+                            "required": false,
+                            "vendorSchema": {
+                                "name": "created_at",
+                                "format": "toFormat:{unixtime}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "bounces"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteBounce",
+            "description": "Clears a given bounce event. The delivery to the deleted email address resumes until it bounces again.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces\/{$data['address']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteBounceList",
+            "description": "Clears all bounced email addresses for a domain. Delivery to the deleted email addresses will no longer be suppressed.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/bounces",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllUnsubscribes",
+            "description": "Paginate over a list of unsubscribes for a domain.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Number of records to return (optional, default: 100, max: 10000).",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/unsubscribes",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleUnsubscribeRecord",
+            "description": "Fetch a single unsubscribe record. Can be used to check if a given address is present in the list of unsubscribed users.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/unsubscribes\/{$data['address']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addAddressToUnsubscribeTable",
+            "description": "Add an address to the unsubscribe table.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Tag to unsubscribe from, use * to unsubscribe an address from all domain\u2019s correspondence (optional, default: *)",
+                    "required": false
+                },
+                {
+                    "name": "createdAt",
+                    "type": "String",
+                    "info": "Timestamp of a bounce event.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "created_at",
+                        "format": "toFormat:{unixtime}"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/unsubscribes",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "address",
+                            "tag",
+                            "created_at"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addMultipleUnsubscribeRecords",
+            "description": "Add multiple unsubscribe records to the unsubscribe list in a single API call.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "unsubscribeList",
+                    "type": "Array",
+                    "info": "Unsubscribe list",
+                    "required": true,
+                    "structure": [
+                        {
+                            "name": "address",
+                            "type": "String",
+                            "info": "Valid email address",
+                            "required": true
+                        },
+                        {
+                            "name": "tag",
+                            "type": "String",
+                            "info": "Tag to unsubscribe from, use * to unsubscribe an address from all domain\u2019s correspondence (optional, default: *)",
+                            "required": false
+                        },
+                        {
+                            "name": "createdAt",
+                            "type": "String",
+                            "info": "Timestamp of a bounce event.",
+                            "required": false,
+                            "vendorSchema": {
+                                "name": "created_at",
+                                "format": "toFormat:{unixtime}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/unsubscribes",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "unsubscribeList"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteUnsubscribeRecords",
+            "description": "Remove an address from the unsubscribes list. If tag parameter is not provided, completely removes an address from the list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Specific tag to remove.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/unsubscribes\/{$data['address']}",
+                "method": "delete",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "tag"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllComplaints",
+            "description": "Paginate over a list of complaints for a domain.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return (optional, default: 100, max: 10000)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/complaints",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleComplaint",
+            "description": "Fetch a single spam complaint by a given email address. This is useful to check if a particular user has complained.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/complaints\/{$data['address']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addSingleComplaint",
+            "description": "Add an address to the complaints list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                },
+                {
+                    "name": "createdAt",
+                    "type": "String",
+                    "info": "Timestamp of a bounce event.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "created_at",
+                        "format": "toFormat:{unixtime}"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/complaints",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "address",
+                            "created_at"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addMultipleComplaints",
+            "description": "Add an address to the complaints list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "complaints",
+                    "type": "Array",
+                    "info": "Complaints array",
+                    "required": true,
+                    "structure": [
+                        {
+                            "name": "address",
+                            "type": "String",
+                            "info": "Valid email address",
+                            "required": true
+                        },
+                        {
+                            "name": "createdAt",
+                            "type": "String",
+                            "info": "Timestamp of a bounce event.",
+                            "required": false,
+                            "vendorSchema": {
+                                "name": "created_at",
+                                "format": "toFormat:{unixtime}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/complaints",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "complaints"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteComplaint",
+            "description": "Remove a given spam complaint.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/complaints\/{$data['address']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllRoutes",
+            "description": "Fetches the list of routes. Note that routes are defined globally, per account, not per domain as most of other API calls.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return. (100 by default).",
+                    "required": false
+                },
+                {
+                    "name": "skip",
+                    "type": "Number",
+                    "info": "Number of records to skip. (0 by default).",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/routes",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit",
+                            "skip"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleRoute",
+            "description": "Returns a single route object based on its ID.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "routeId",
+                    "type": "String",
+                    "info": "ID of the route.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/routes\/{$data['routeId']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "createRoute",
+            "description": "Creates a new route.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "priority",
+                    "type": "Number",
+                    "info": "Integer: smaller number indicates higher priority. Higher priority routes are handled first. Defaults to 0.",
+                    "required": true
+                },
+                {
+                    "name": "description",
+                    "type": "String",
+                    "info": "An arbitrary string.",
+                    "required": true
+                },
+                {
+                    "name": "expression",
+                    "type": "String",
+                    "info": "A filter expression like match_recipient('.*@gmail.com').",
+                    "required": true
+                },
+                {
+                    "name": "action",
+                    "type": "String",
+                    "info": "Route action. This action is executed when the expression evaluates to True. Example: forward('alice@example.com')",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/routes",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "priority",
+                            "description",
+                            "expression",
+                            "action"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "updateRoute",
+            "description": "Updates a given route by ID. All parameters are optional: this API call only updates the specified fields leaving others unchanged.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "routeId",
+                    "type": "String",
+                    "info": "ID of the route.",
+                    "required": true
+                },
+                {
+                    "name": "priority",
+                    "type": "Number",
+                    "info": "Integer: smaller number indicates higher priority. Higher priority routes are handled first. Defaults to 0.",
+                    "required": false
+                },
+                {
+                    "name": "description",
+                    "type": "String",
+                    "info": "An arbitrary string.",
+                    "required": false
+                },
+                {
+                    "name": "expression",
+                    "type": "String",
+                    "info": "A filter expression like match_recipient('.*@gmail.com').",
+                    "required": false
+                },
+                {
+                    "name": "action",
+                    "type": "String",
+                    "info": "Route action. This action is executed when the expression evaluates to True. Example: forward('alice@example.com')",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/routes\/{$data['routeId']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "priority",
+                            "description",
+                            "expression",
+                            "action"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteRoute",
+            "description": "Deletes a route based on the id.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "routeId",
+                    "type": "String",
+                    "info": "ID of the route.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/routes\/{$data['routeId']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllWebhooks",
+            "description": "Returns a list of webhooks set for the specified domain.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleWebhook",
+            "description": "Returns details about a the webhook specified in the URL.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "webhookName",
+                    "type": "String",
+                    "info": "Name of the webhook.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "createWebhook",
+            "description": "Creates a new webhook.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "id",
+                    "type": "String",
+                    "info": "Name of the webhook.",
+                    "required": true
+                },
+                {
+                    "name": "url",
+                    "type": "String",
+                    "info": "URL for the webhook event.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "id",
+                            "url"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "updateWebhook",
+            "description": "Creates a new webhook.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "webhookName",
+                    "type": "String",
+                    "info": "Name of the webhook.",
+                    "required": true
+                },
+                {
+                    "name": "id",
+                    "type": "String",
+                    "info": "Name of the webhook.",
+                    "required": false
+                },
+                {
+                    "name": "url",
+                    "type": "String",
+                    "info": "URL for the webhook event.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "id",
+                            "url"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteWebhook",
+            "description": "Deletes an existing webhook.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "Name of the domain.",
+                    "required": true
+                },
+                {
+                    "name": "webhookName",
+                    "type": "String",
+                    "info": "Name of the webhook.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAllMailingLists",
+            "description": "Paginate over mailing lists under your account.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return (optional, default: 100, max: 10000)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/pages",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleMailingList",
+            "description": "Returns a single mailing list by a given address.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "Valid email address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "createMailingList",
+            "description": "Creates a new mailing list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Mailing list name, e.g. Developers.",
+                    "required": false
+                },
+                {
+                    "name": "description",
+                    "type": "String",
+                    "info": "A description.",
+                    "required": false
+                },
+                {
+                    "name": "accessLevel",
+                    "type": "String",
+                    "info": "List access level, one of: readonly (default), members, everyone",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "access_level"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "address",
+                            "name",
+                            "description",
+                            "access_level"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "updateMailingList",
+            "description": "Update mailing list properties, such as address, description or name",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "New mailing list address, e.g. devs@mg.net",
+                    "required": false
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Mailing list name, e.g. Developers.",
+                    "required": false
+                },
+                {
+                    "name": "description",
+                    "type": "String",
+                    "info": "A description.",
+                    "required": false
+                },
+                {
+                    "name": "accessLevel",
+                    "type": "String",
+                    "info": "List access level, one of: readonly (default), members, everyone",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "access_level"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['email']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "address",
+                            "name",
+                            "description",
+                            "access_level"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteMailingList",
+            "description": "Deletes a mailing list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['email']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getMailingListMembers",
+            "description": "Paginate over list members in the given mailing list",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "subscribed",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "yes to lists subscribed, no for unsubscribed. list all if not set",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Maximum number of records to return (optional, default: 100, max: 10000)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}\/members\/pages",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "subscribed",
+                            "limit"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getSingleMailingListMember",
+            "description": "Retrieves a mailing list member.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "memberAddress",
+                    "type": "String",
+                    "info": "Member email-address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}\/members\/{$data['memberAddress']}",
+                "method": "get"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "addMemberToMailingList",
+            "description": "Adds a member to the mailing list.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Optional member name.",
+                    "required": true
+                },
+                {
+                    "name": "vars",
+                    "type": "JSON",
+                    "info": "JSON-encoded dictionary string with arbitrary parameters, e.g. {'gender':'female','age':27}",
+                    "required": false
+                },
+                {
+                    "name": "subscribed",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "yes to add as subscribed (default), no as unsubscribed",
+                    "required": true
+                },
+                {
+                    "name": "upsert",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "yes to update member if present, no to raise error in case of a duplicate member (default)",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}\/members",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "name",
+                            "vars",
+                            "subscribed",
+                            "upsert"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "updateMember",
+            "description": "Updates a mailing list member with given properties.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "memberAddress",
+                    "type": "String",
+                    "info": "Member email-address",
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Optional member name.",
+                    "required": false
+                },
+                {
+                    "name": "vars",
+                    "type": "JSON",
+                    "info": "JSON-encoded dictionary string with arbitrary parameters, e.g. {'gender':'female','age':27}",
+                    "required": false
+                },
+                {
+                    "name": "subscribed",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "yes to add as subscribed (default), no as unsubscribed",
+                    "required": false
+                },
+                {
+                    "name": "upsert",
+                    "type": "Select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ],
+                    "info": "yes to update member if present, no to raise error in case of a duplicate member (default)",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}\/members\/{$data['memberAddress']}",
+                "method": "put",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "name",
+                            "vars",
+                            "subscribed",
+                            "upsert"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "deleteMember",
+            "description": "Delete a mailing list member.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "A valid email address for the mailing list, e.g. developers@mailgun.net, or Developers <devs@mg.net>",
+                    "required": true
+                },
+                {
+                    "name": "memberAddress",
+                    "type": "String",
+                    "info": "Member email-address",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/{$data['address']}\/members\/{$data['memberAddress']}",
+                "method": "delete"
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "validateAddress",
+            "description": "Given an arbitrary address, validates address based off defined checks.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from MailGun.",
+                    "required": true
+                },
+                {
+                    "name": "address",
+                    "type": "String",
+                    "info": "An email address to validate. (Maximum: 512 characters)",
+                    "required": true
+                },
+                {
+                    "name": "mailboxVerification",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "If set to true, a mailbox verification check will be performed against the address.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "mailbox_verification"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "api",
+                    "password": "{$data['apiKey']}"
+                },
+                "url": "https:\/\/api.mailgun.net\/v3\/lists\/address\/validate",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "address",
+                            "mailbox_verification"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        }
+    ]
+}

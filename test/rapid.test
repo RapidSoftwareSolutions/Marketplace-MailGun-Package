@@ -1,0 +1,1454 @@
+{
+	"name": "MailGun",
+	"description": "Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.",
+	"connect": {
+		"username": "qa-project",
+		"password": "481bab2d-e8fe-4214-8714-bab8157356e4"
+	},
+	"dependencies": {
+
+	},
+	"blocks": [
+		{
+			"name": "sendEmail",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "from",
+					"value": ""
+				}, 			
+				{
+					"key": "to",
+					"value": []
+				}, 			
+				{
+					"key": "cc",
+					"value": []
+				}, 			
+				{
+					"key": "bcc",
+					"value": []
+				}, 			
+				{
+					"key": "subject",
+					"value": ""
+				}, 			
+				{
+					"key": "text",
+					"value": ""
+				}, 			
+				{
+					"key": "html",
+					"value": ""
+				}, 			
+				{
+					"key": "inline",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tag",
+					"value": []
+				}, 			
+				{
+					"key": "o:campaign",
+					"value": ""
+				}, 			
+				{
+					"key": "o:dkim",
+					"value": ""
+				}, 			
+				{
+					"key": "o:deliverytime",
+					"value": ""
+				}, 			
+				{
+					"key": "o:testmode",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking-clicks",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking-opens",
+					"value": ""
+				}, 			
+				{
+					"key": "o:require-tls",
+					"value": false
+				}, 			
+				{
+					"key": "o:skip-verification",
+					"value": false
+				}, 			
+				{
+					"key": "h:X-My-Header",
+					"value": ""
+				}, 			
+				{
+					"key": "v:my-var",
+					"value": []
+				}
+			]
+		}, 		
+		{
+			"name": "sendEmailMIME",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "from",
+					"value": ""
+				}, 			
+				{
+					"key": "to",
+					"value": []
+				}, 			
+				{
+					"key": "cc",
+					"value": []
+				}, 			
+				{
+					"key": "bcc",
+					"value": []
+				}, 			
+				{
+					"key": "subject",
+					"value": ""
+				}, 			
+				{
+					"key": "text",
+					"value": ""
+				}, 			
+				{
+					"key": "html",
+					"value": ""
+				}, 			
+				{
+					"key": "inline",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tag",
+					"value": []
+				}, 			
+				{
+					"key": "o:campaign",
+					"value": ""
+				}, 			
+				{
+					"key": "o:dkim",
+					"value": ""
+				}, 			
+				{
+					"key": "o:deliverytime",
+					"value": ""
+				}, 			
+				{
+					"key": "o:testmode",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking-clicks",
+					"value": ""
+				}, 			
+				{
+					"key": "o:tracking-opens",
+					"value": ""
+				}, 			
+				{
+					"key": "o:require-tls",
+					"value": false
+				}, 			
+				{
+					"key": "o:skip-verification",
+					"value": false
+				}, 			
+				{
+					"key": "h:X-My-Header",
+					"value": ""
+				}, 			
+				{
+					"key": "v:my-var",
+					"value": []
+				}
+			]
+		}, 		
+		{
+			"name": "getStoredMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getAcceptedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getRejectedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getDeliveredMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getFailedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getOpenedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getClickedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getUnsubscribedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getComplainedMessages",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "begin",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "ascending",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getAllStats",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "event",
+					"value": ""
+				}, 			
+				{
+					"key": "start",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "resolution",
+					"value": ""
+				}, 			
+				{
+					"key": "duration",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getEventStats",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}, 			
+				{
+					"key": "skip",
+					"value": 0
+				}, 			
+				{
+					"key": "event",
+					"value": ""
+				}, 			
+				{
+					"key": "startDate",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllTags",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleTag",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "updateTag",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}, 			
+				{
+					"key": "description",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getTagStats",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}, 			
+				{
+					"key": "event",
+					"value": ""
+				}, 			
+				{
+					"key": "start",
+					"value": ""
+				}, 			
+				{
+					"key": "end",
+					"value": ""
+				}, 			
+				{
+					"key": "resolution",
+					"value": ""
+				}, 			
+				{
+					"key": "duration",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteTag",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllBounces",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleBounce",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "email",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addBounce",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "code",
+					"value": ""
+				}, 			
+				{
+					"key": "error",
+					"value": ""
+				}, 			
+				{
+					"key": "createdAt",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addMultipleBounces",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "bounces",
+					"value": []
+				}
+			]
+		}, 		
+		{
+			"name": "deleteBounce",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteBounceList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllUnsubscribes",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleUnsubscribeRecord",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addAddressToUnsubscribeTable",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}, 			
+				{
+					"key": "createdAt",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addMultipleUnsubscribeRecords",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "unsubscribeList",
+					"value": []
+				}
+			]
+		}, 		
+		{
+			"name": "deleteUnsubscribeRecords",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "tag",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllComplaints",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleComplaint",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addSingleComplaint",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "createdAt",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addMultipleComplaints",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "complaints",
+					"value": []
+				}
+			]
+		}, 		
+		{
+			"name": "deleteComplaint",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllRoutes",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}, 			
+				{
+					"key": "skip",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleRoute",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "routeId",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "createRoute",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "priority",
+					"value": 0
+				}, 			
+				{
+					"key": "description",
+					"value": ""
+				}, 			
+				{
+					"key": "expression",
+					"value": ""
+				}, 			
+				{
+					"key": "action",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "updateRoute",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "routeId",
+					"value": ""
+				}, 			
+				{
+					"key": "priority",
+					"value": 0
+				}, 			
+				{
+					"key": "description",
+					"value": ""
+				}, 			
+				{
+					"key": "expression",
+					"value": ""
+				}, 			
+				{
+					"key": "action",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteRoute",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "routeId",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllWebhooks",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleWebhook",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "webhookName",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "createWebhook",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "id",
+					"value": ""
+				}, 			
+				{
+					"key": "url",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "updateWebhook",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "webhookName",
+					"value": ""
+				}, 			
+				{
+					"key": "id",
+					"value": ""
+				}, 			
+				{
+					"key": "url",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteWebhook",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "domain",
+					"value": ""
+				}, 			
+				{
+					"key": "webhookName",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getAllMailingLists",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleMailingList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "createMailingList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "name",
+					"value": ""
+				}, 			
+				{
+					"key": "description",
+					"value": ""
+				}, 			
+				{
+					"key": "accessLevel",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "updateMailingList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "email",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "name",
+					"value": ""
+				}, 			
+				{
+					"key": "description",
+					"value": ""
+				}, 			
+				{
+					"key": "accessLevel",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteMailingList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "email",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "getMailingListMembers",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "subscribed",
+					"value": ""
+				}, 			
+				{
+					"key": "limit",
+					"value": 0
+				}
+			]
+		}, 		
+		{
+			"name": "getSingleMailingListMember",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "memberAddress",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "addMemberToMailingList",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "name",
+					"value": ""
+				}, 			
+				{
+					"key": "vars",
+					"value": []
+				}, 			
+				{
+					"key": "subscribed",
+					"value": ""
+				}, 			
+				{
+					"key": "upsert",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "updateMember",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "memberAddress",
+					"value": ""
+				}, 			
+				{
+					"key": "name",
+					"value": ""
+				}, 			
+				{
+					"key": "vars",
+					"value": []
+				}, 			
+				{
+					"key": "subscribed",
+					"value": ""
+				}, 			
+				{
+					"key": "upsert",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "deleteMember",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "memberAddress",
+					"value": ""
+				}
+			]
+		}, 		
+		{
+			"name": "validateAddress",
+			"note": "",
+			"skip": false,
+			"params": [			
+				{
+					"key": "apiKey",
+					"value": ""
+				}, 			
+				{
+					"key": "address",
+					"value": ""
+				}, 			
+				{
+					"key": "mailboxVerification",
+					"value": ""
+				}
+			]
+		}
+	]
+}
