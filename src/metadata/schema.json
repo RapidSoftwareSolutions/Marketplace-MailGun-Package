@@ -1799,7 +1799,7 @@
                     "name": "address",
                     "type": "String",
                     "info": "Valid email address",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "code",

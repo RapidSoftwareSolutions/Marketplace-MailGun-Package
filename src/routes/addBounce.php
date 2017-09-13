@@ -4,7 +4,7 @@ $app->post('/api/MailGun/addBounce', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','domain']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','domain','address']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/MailGun/addBounce', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'apiKey','domain'=>'domain'];
-    $optionalParams = ['address'=>'address','code'=>'code','error'=>'error','createdAt'=>'created_at'];
+    $requiredParams = ['apiKey'=>'apiKey','domain'=>'domain','address'=>'address'];
+    $optionalParams = ['code'=>'code','error'=>'error','createdAt'=>'created_at'];
     $bodyParams = [
        'form_params' => ['address','code','error','created_at']
     ];
