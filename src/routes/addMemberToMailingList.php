@@ -20,7 +20,9 @@ $app->post('/api/MailGun/addMemberToMailingList', function ($request, $response)
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    if(isset($data['vars'])){
+        $data['vars'] = json_encode($data['vars']);
+    }
 
     $client = $this->httpClient;
     $query_str = "https://api.mailgun.net/v3/lists/{$data['address']}/members";

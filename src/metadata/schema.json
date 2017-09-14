@@ -212,13 +212,15 @@
                 },
                 {
                     "name": "o:require-tls",
-                    "type": "Boolean",
+                    "type": "Select",
+                    "options":["true","false"],
                     "info": "This requires the message only be sent over a TLS connection. (True or False)",
                     "required": false
                 },
                 {
                     "name": "o:skip-verification",
-                    "type": "Boolean",
+                    "type": "Select",
+                    "options":["true","false"],
                     "info": "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
                     "required": false
                 },
@@ -440,13 +442,15 @@
                 },
                 {
                     "name": "o:require-tls",
-                    "type": "Boolean",
+                    "type": "Select",
+                    "options":["true","false"],
                     "info": "This requires the message only be sent over a TLS connection. (True or False)",
                     "required": false
                 },
                 {
                     "name": "o:skip-verification",
-                    "type": "Boolean",
+                    "type": "Select",
+                    "options":["true","false"],
                     "info": "If set to True, the certificate and hostname will not be verified when trying to establish a TLS connection and Mailgun will accept any certificate during delivery.",
                     "required": false
                 },
@@ -1363,7 +1367,7 @@
                 },
                 {
                     "name": "startDate",
-                    "type": "String",
+                    "type": "DatePicker",
                     "info": "The date to receive the stats starting from. Should have ISO8601 format (YYYY-MM-DD).",
                     "required": false,
                     "vendorSchema": {
@@ -1815,7 +1819,7 @@
                 },
                 {
                     "name": "createdAt",
-                    "type": "String",
+                    "type": "DatePicker",
                     "info": "Timestamp of a bounce event.",
                     "required": false,
                     "vendorSchema": {
@@ -1896,7 +1900,7 @@
                         },
                         {
                             "name": "createdAt",
-                            "type": "String",
+                            "type": "DatePicker",
                             "info": "Timestamp of a bounce event.",
                             "required": false,
                             "vendorSchema": {
@@ -2134,7 +2138,7 @@
                 },
                 {
                     "name": "createdAt",
-                    "type": "String",
+                    "type": "DatePicker",
                     "info": "Timestamp of a bounce event.",
                     "required": false,
                     "vendorSchema": {
@@ -2344,7 +2348,7 @@
                 },
                 {
                     "name": "createdAt",
-                    "type": "String",
+                    "type": "DatePicker",
                     "info": "Timestamp of a bounce event.",
                     "required": false,
                     "vendorSchema": {
@@ -2488,7 +2492,7 @@
                     "name": "routeId",
                     "type": "String",
                     "info": "ID of the route.",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
@@ -2704,7 +2708,7 @@
                     "username": "api",
                     "password": "{$data['apiKey']}"
                 },
-                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks",
+                "url": "https:\/\/api.mailgun.net\/v3\/domains/{$data['domain']}\/webhooks",
                 "method": "get"
             },
             "callbacks": [
@@ -2746,7 +2750,7 @@
                     "username": "api",
                     "password": "{$data['apiKey']}"
                 },
-                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "url": "https:\/\/api.mailgun.net\/v3\/domains/{$data['domain']}\/webhooks\/{$data['webhookName']}",
                 "method": "get"
             },
             "callbacks": [
@@ -2794,7 +2798,7 @@
                     "username": "api",
                     "password": "{$data['apiKey']}"
                 },
-                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks",
+                "url": "https:\/\/api.mailgun.net\/v3\/domains/{$data['domain']}\/webhooks",
                 "method": "post",
                 "requestParameters": [
                     {
@@ -2857,7 +2861,7 @@
                     "username": "api",
                     "password": "{$data['apiKey']}"
                 },
-                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "url": "https:\/\/api.mailgun.net\/v3\/domains/{$data['domain']}\/webhooks\/{$data['webhookName']}",
                 "method": "put",
                 "requestParameters": [
                     {
@@ -2908,7 +2912,7 @@
                     "username": "api",
                     "password": "{$data['apiKey']}"
                 },
-                "url": "https:\/\/api.mailgun.net\/v3\/{$data['domain']}\/webhooks\/{$data['webhookName']}",
+                "url": "https:\/\/api.mailgun.net\/v3\/domains/{$data['domain']}\/webhooks\/{$data['webhookName']}",
                 "method": "delete"
             },
             "callbacks": [
@@ -3032,7 +3036,8 @@
                 },
                 {
                     "name": "accessLevel",
-                    "type": "String",
+                    "type": "Select",
+                    "options": ["members","everyone","readonly"],
                     "info": "List access level, one of: readonly (default), members, everyone",
                     "required": false,
                     "vendorSchema": {
@@ -3106,7 +3111,8 @@
                 },
                 {
                     "name": "accessLevel",
-                    "type": "String",
+                    "type": "Select",
+                    "options": ["members","everyone","readonly"],
                     "info": "List access level, one of: readonly (default), members, everyone",
                     "required": false,
                     "vendorSchema": {

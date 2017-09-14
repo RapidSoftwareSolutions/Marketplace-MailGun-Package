@@ -20,7 +20,9 @@ $app->post('/api/MailGun/sendEmailMIME', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
     $data['to'] = \Models\Params::toString($data['to']);
-
+    if(isset($data['o:deliverytime'])){
+        $data['o:deliverytime'] = \Models\Params::toFormat($data['o:deliverytime'], 'D, d M Y H:i:s O');
+    }
 
     $client = $this->httpClient;
     $query_str = "https://api.mailgun.net/v3/{$data['domain']}/messages";

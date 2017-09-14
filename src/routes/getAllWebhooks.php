@@ -19,12 +19,12 @@ $app->post('/api/MailGun/getAllWebhooks', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+
 
     $client = $this->httpClient;
-    $query_str = "https://api.mailgun.net/v3/{$data['domain']}/webhooks";
+    $query_str = "https://api.mailgun.net/v3/domains/{$data['domain']}/webhooks";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
