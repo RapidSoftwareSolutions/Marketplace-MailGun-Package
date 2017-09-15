@@ -19,7 +19,8 @@
         ]
     },
     "steps": [
-        "SignIn https://mailgun.com/sessions/new to your MailGun account.",
+        "Go to MailGun website https://mailgun.com/sessions/new.",
+        "Register or log in.",
         "Go to Domains tab.",
         "Create or select domain.",
         "Copy domain name and apiKey"
