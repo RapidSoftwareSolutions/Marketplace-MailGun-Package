@@ -12,6 +12,7 @@ $app->post('/api/MailGun/getAllBounces', function ($request, $response) {
         $post_data = $validateRes;
     }
 
+
     $requiredParams = ['apiKey'=>'apiKey','domain'=>'domain'];
     $optionalParams = ['limit'=>'limit'];
     $bodyParams = [
@@ -20,16 +21,20 @@ $app->post('/api/MailGun/getAllBounces', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
 
     $client = $this->httpClient;
     $query_str = "https://api.mailgun.net/v3/{$data['domain']}/bounces";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
     $requestParams['auth'] = ['api',$data['apiKey']];
+
+    if(isset($post_data['args']['limit']) && $post_data['args']['limit'] === "0"){
+        $requestParams['query']['limit'] = 0;
+    }
+
 
     try {
         $resp = $client->get($query_str, $requestParams);
@@ -79,7 +84,6 @@ $app->post('/api/MailGun/getAllBounces', function ($request, $response) {
         $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
 
     }
-
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 
 });

@@ -19,7 +19,7 @@
         ]
     },
     "steps": [
-        "Go to MailGun website https://mailgun.com/sessions/new.",
+        "Go to MailGun website https://mailgun.com/sessions/new .",
         "Register or log in.",
         "Go to Domains tab.",
         "Create or select domain.",
@@ -1361,12 +1361,6 @@
                     "required": false
                 },
                 {
-                    "name": "event",
-                    "type": "String",
-                    "info": "Name of the event to receive the stats for. Note that you can specify this parameter multiple times to fetch stats for several events at the same time.",
-                    "required": false
-                },
-                {
                     "name": "startDate",
                     "type": "DatePicker",
                     "info": "The date to receive the stats starting from. Should have ISO8601 format (YYYY-MM-DD).",
@@ -1375,6 +1369,12 @@
                         "name": "start-date",
                         "format": "toFormat:{Y-m-d}"
                     }
+                },
+                {
+                    "name": "event",
+                    "type": "String",
+                    "info": "Name of the event to receive the stats for. Note that you can specify this parameter multiple times to fetch stats for several events at the same time.",
+                    "required": false
                 }
             ],
             "vendorRequest": {
@@ -1459,7 +1459,7 @@
         },
         {
             "name": "getSingleTag",
-            "description": "Returns a list of tags for a domain. Provides with the pagination urls if the result set is to long to be returned in a single response.",
+            "description": "Returns info for a given tag.",
             "args": [
                 {
                     "name": "apiKey",
@@ -1813,12 +1813,6 @@
                     "required": false
                 },
                 {
-                    "name": "error",
-                    "type": "String",
-                    "info": "Error description (default: empty string)",
-                    "required": false
-                },
-                {
                     "name": "createdAt",
                     "type": "DatePicker",
                     "info": "Timestamp of a bounce event.",
@@ -1827,6 +1821,12 @@
                         "name": "created_at",
                         "format": "toFormat:{unixtime}"
                     }
+                },
+                {
+                    "name": "error",
+                    "type": "String",
+                    "info": "Error description (default: empty string)",
+                    "required": false
                 }
             ],
             "vendorRequest": {
@@ -2132,12 +2132,6 @@
                     "required": true
                 },
                 {
-                    "name": "tag",
-                    "type": "String",
-                    "info": "Tag to unsubscribe from, use * to unsubscribe an address from all domain\u2019s correspondence (optional, default: *)",
-                    "required": false
-                },
-                {
                     "name": "createdAt",
                     "type": "DatePicker",
                     "info": "Timestamp of a bounce event.",
@@ -2146,6 +2140,12 @@
                         "name": "created_at",
                         "format": "toFormat:{unixtime}"
                     }
+                },
+                {
+                    "name": "tag",
+                    "type": "String",
+                    "info": "Tag to unsubscribe from, use * to unsubscribe an address from all domain\u2019s correspondence (optional, default: *)",
+                    "required": false
                 }
             ],
             "vendorRequest": {
@@ -2665,7 +2665,7 @@
                     "name": "routeId",
                     "type": "String",
                     "info": "ID of the route.",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
@@ -2824,7 +2824,7 @@
         },
         {
             "name": "updateWebhook",
-            "description": "Creates a new webhook.",
+            "description": "Updates an existing webhook.",
             "args": [
                 {
                     "name": "apiKey",

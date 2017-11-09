@@ -31,6 +31,10 @@ $app->post('/api/MailGun/getAllUnsubscribes', function ($request, $response) {
     $requestParams['headers'] = [];
     $requestParams['auth'] = ['api',$data['apiKey']];
 
+    if(isset($post_data['args']['limit']) && $post_data['args']['limit'] === "0"){
+        $requestParams['query']['limit'] = 0;
+    }
+
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

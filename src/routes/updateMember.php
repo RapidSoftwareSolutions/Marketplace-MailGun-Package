@@ -31,6 +31,11 @@ $app->post('/api/MailGun/updateMember', function ($request, $response) {
     $requestParams['headers'] = [];
     $requestParams['auth'] = ['api',$data['apiKey']];
 
+    if(!empty($data['vars']))
+    {
+        $requestParams['form_params']['vars'] = json_encode($data['vars']);
+
+    }
     try {
         $resp = $client->put($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

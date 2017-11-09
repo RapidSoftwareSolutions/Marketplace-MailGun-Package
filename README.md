@@ -5,8 +5,11 @@
 # MailGun Package
 Use the MailGun API to access the product's features, such as sending E-Mails, webhooks, Email Validation etc.
 
+* Domain: [MailGun](https://mailgun.com)
+* Credentials: apiKey
+
 ## How to get credentials:
-1. Go to MailGun website https://mailgun.com/sessions/new.
+1. Go to [MailGun website](https://mailgun.com/sessions/new).
 2. Register or log in.
 3. Go to ***Domains*** tab.
 4. Create or select domain.
@@ -24,6 +27,8 @@ Use the MailGun API to access the product's features, such as sending E-Mails, w
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
 
  ## MailGun.sendEmail
+ Sends an email.
+ 
  | Field              | Type       | Description
  |--------------------|------------|----------
  | apiKey             | Credentials| The api key obtained from MailGun.
@@ -220,7 +225,7 @@ Returns a list of tags for a domain. Provides with the pagination urls if the re
 | limit | Number     | Maximum number of records to return. (100 by default)
 
 ## MailGun.getSingleTag
-Returns a list of tags for a domain. Provides with the pagination urls if the result set is to long to be returned in a single response.
+Returns info for a given tag.
 
 | Field | Type       | Description
 |-------|------------|----------
@@ -471,7 +476,7 @@ Creates a new webhook.
 | url   | String     | URL for the webhook event.
 
 ## MailGun.updateWebhook
-Creates a new webhook.
+Updates an existing webhook.
 
 | Field      | Type       | Description
 |------------|------------|----------
